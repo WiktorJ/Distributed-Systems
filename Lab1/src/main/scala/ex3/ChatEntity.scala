@@ -16,7 +16,7 @@ object ChatEntity {
 
   def main(args: Array[String]) {
     val nickname = args(0)
-    val ip = "224.0.01"
+    val ip = "224.0.0.1"
     val port = 8080
     if (nickname.length > 6 ) {
       println("Maximum length of nick is 6")
