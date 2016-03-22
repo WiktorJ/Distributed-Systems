@@ -17,4 +17,6 @@ public interface IGame extends Remote{
 
     void startGame() throws RemoteException;
 
+    public int getBoardSize() throws RemoteException;
+
 }

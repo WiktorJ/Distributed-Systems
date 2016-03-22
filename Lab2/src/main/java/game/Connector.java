@@ -44,6 +44,7 @@ public class Connector implements IConnector {
         } finally {
             gameMapLock.unlock();
         }
+        listener.setBoardSize(game.getBoardSize());
         game.addPlayerListener(BoardFigure.getOpposite(gameDescription.getCreatorFigure()), listener);
         game.startGame();
         return new Player(nick, game, BoardFigure.getOpposite(gameDescription.getCreatorFigure()));

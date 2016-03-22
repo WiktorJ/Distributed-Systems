@@ -178,5 +178,8 @@ public class Game implements IGame{
         }
     }
 
+    public int getBoardSize() {
+        return boardSize;
+    }
 }
 
