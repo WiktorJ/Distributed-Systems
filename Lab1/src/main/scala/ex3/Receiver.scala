@@ -14,7 +14,6 @@ class Receiver(ip: String, port: Int, nickname: String) extends Runnable {
     val receiveBuffer: Array[Byte] = new Array[Byte](socket.getReceiveBufferSize)
     val datagramPacket: DatagramPacket = new DatagramPacket(receiveBuffer, socket.getReceiveBufferSize)
     while (true) {
-      println
       socket.receive(datagramPacket)
       val inputStream: DataInputStream = new DataInputStream(new ByteArrayInputStream(receiveBuffer))
 

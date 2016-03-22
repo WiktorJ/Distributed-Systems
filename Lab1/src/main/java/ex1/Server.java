@@ -39,6 +39,7 @@ public class Server {
                 for (int i = 1; i < read; i++) {
                     nthDigit = (nthDigit << 8) | (recBuffer[i] & 0xff);
                 }
+                System.out.println("Server received: " + nthDigit);
                 sendBuffer[0] = getPiDigit(nthDigit);
                 outputStream.write(sendBuffer);
                 accept.close();
