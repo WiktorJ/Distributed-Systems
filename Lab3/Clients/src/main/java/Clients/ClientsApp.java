@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jms.connection.CachingConnectionFactory;
+import org.springframework.jms.connection.SingleConnectionFactory;
 import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
@@ -25,8 +26,8 @@ public class ClientsApp {
 
     @Bean
     CachingConnectionFactory cachingConnectionFactory() {
-        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(new ActiveMQConnectionFactory("tcp://localhost:61616"));
-        cachingConnectionFactory.setSessionCacheSize(10);
+        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(new ActiveMQConnectionFactory(Configuration.ACTIVEMQ_ADDRESS));
+        cachingConnectionFactory.setSessionCacheSize(2);
         return cachingConnectionFactory;
     }
 

@@ -13,6 +13,7 @@ public final class Configuration {
     public static final int SOLVERS_NUMBER = 2;
     public static final int CLIENTS_NUMBER = 2;
     public static final String OPERATION_PROPERTY_NAME = "OPERATION_PROPERTY";
+    public static final String ACTIVEMQ_ADDRESS = "tcp://localhost:61616";
 
     public static final Map<String,OperationProperties> PROPERTIES_MAP = ImmutableMap.<String, OperationProperties>builder()
             .put("+", new OperationProperties("plusTopic", "plusQueue",

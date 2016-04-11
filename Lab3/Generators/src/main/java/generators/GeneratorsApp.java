@@ -23,7 +23,7 @@ public class GeneratorsApp {
 
     @Bean
     CachingConnectionFactory cachingConnectionFactory() {
-        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(new ActiveMQConnectionFactory("tcp://localhost:61616"));
+        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(new ActiveMQConnectionFactory(Configuration.ACTIVEMQ_ADDRESS));
         cachingConnectionFactory.setSessionCacheSize(10);
         return cachingConnectionFactory;
     }
