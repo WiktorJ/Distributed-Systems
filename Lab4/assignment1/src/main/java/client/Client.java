@@ -16,7 +16,8 @@ public class Client {
 
         try {
             communicator = Ice.Util.initialize(args);
-            Ice.ObjectPrx base1 = communicator.stringToProxy("c1/o1:tcp -h localhost -p 10000:udp -h localhost -p 10000:ssl -h localhost -p 10001");
+//            Ice.ObjectPrx base1 = communicator.stringToProxy("c1/o1:tcp -h localhost -p 10000:udp -h localhost -p 10000:ssl -h localhost -p 10001");
+            Ice.ObjectPrx base1 = communicator.propertyToProxy("Counter1.Proxy");
 
             CounterPrx calc1 = CounterPrxHelper.checkedCast(base1);
             if (calc1 == null) throw new Error("Invalid proxy");

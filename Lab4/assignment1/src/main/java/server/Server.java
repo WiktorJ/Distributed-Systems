@@ -13,11 +13,13 @@ public class Server {
         try
         {
             communicator = Ice.Util.initialize(args);
-            Ice.ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("Adapter1",
-                    "tcp -h localhost -p 10000:udp -h localhost -p 10000");
+            Ice.ObjectAdapter adapter = communicator.createObjectAdapter("Adapter1");
 
             adapter.addServantLocator(new POneLocator("p1", adapter), "c1");
             adapter.addServantLocator(new PTwoLocator("p2"), "c2");
+            adapter.addServantLocator(new PThreeLocator("p3", 2), "c3");
+            adapter.addServantLocator(new PFourLocator("p4"), "c4");
+            adapter.addServantLocator(new PFiveLocator("p5", 2), "c5");
 
             adapter.activate();
             System.out.println("Entering event processing loop...");

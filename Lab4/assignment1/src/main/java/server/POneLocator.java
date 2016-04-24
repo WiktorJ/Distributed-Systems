@@ -18,7 +18,7 @@ import java.io.IOException;
 public class POneLocator extends AbstractLocator {
 
     private static final Logger logger = Logger.getLogger(POneLocator.class);
-    private static final String repoLocation = "src/main/resources/";
+    private static final String repoLocation = "src/main/resources";
 
     private Ice.ObjectAdapter adapter;
     private ObjectMapper objectMapper;
@@ -31,26 +31,16 @@ public class POneLocator extends AbstractLocator {
     }
 
     @Override
-    public Object locate(Current current, LocalObjectHolder localObjectHolder) throws UserException {
-        Object servant = adapter.find(current.id);
-        if (servant == null) {
-            Counter counter;
-            try {
-                counter = objectMapper.readValue(new File(repoLocation + current.id.name), Counter.class);
-            } catch (IOException e) {
-                logger.warn("No previous state fro object " + current.id.name + " new one will be created", e);
-                counter = new Counter();
-                try {
-                    objectMapper.writeValue(new File(repoLocation + current.id.name), counter);
-                } catch (IOException e1) {
-                    logger.warn("Couldn't create backup for " + current.id.name, e);
-                }
-            }
-            adapter.add(counter, current.id);
-            return counter;
-        } else {
-            return servant;
+    public synchronized Object locate(Current current, LocalObjectHolder localObjectHolder) throws UserException {
+        Counter counter;
+        try {
+            counter = objectMapper.readValue(new File(repoLocation + current.id.name), Counter.class);
+        } catch (IOException e) {
+            logger.warn("No previous state for object " + current.id.name + " new one will be created", e);
+            counter = new Counter();
         }
+        adapter.add(counter, current.id);
+        return counter;
     }
 
 }
