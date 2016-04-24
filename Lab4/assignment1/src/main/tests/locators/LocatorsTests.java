@@ -23,9 +23,9 @@ public class LocatorsTests {
         Ice.ObjectPrx base5 = communicator.stringToProxy("c3/o2:tcp -h localhost -p 10000:udp -h localhost -p 10000");
         Ice.ObjectPrx base6 = communicator.stringToProxy("c4/o1:tcp -h localhost -p 10000:udp -h localhost -p 10000");
         Ice.ObjectPrx base7 = communicator.stringToProxy("c4/o2:tcp -h localhost -p 10000:udp -h localhost -p 10000");
-        Ice.ObjectPrx base8 = communicator.stringToProxy("c5/o1:tcp -h localhost -p 10000:udp -h localhost -p 10000");
-        Ice.ObjectPrx base9 = communicator.stringToProxy("c5/o2:tcp -h localhost -p 10000:udp -h localhost -p 10000");
-        Ice.ObjectPrx base10 = communicator.stringToProxy("c5/o3:tcp -h localhost -p 10000:udp -h localhost -p 10000");
+        Ice.ObjectPrx base8 = communicator.stringToProxy("c5/o11:tcp -h localhost -p 10000:udp -h localhost -p 10000");
+        Ice.ObjectPrx base9 = communicator.stringToProxy("c5/o22:tcp -h localhost -p 10000:udp -h localhost -p 10000");
+        Ice.ObjectPrx base10 = communicator.stringToProxy("c5/o33:tcp -h localhost -p 10000:udp -h localhost -p 10000");
 
         CounterPrx counter0 = CounterPrxHelper.checkedCast(base0);
         CounterPrx counter1 = CounterPrxHelper.checkedCast(base0);
@@ -46,8 +46,8 @@ public class LocatorsTests {
         for (int i = 0; i < 10; i++) {
             counter0.increment();
         }
-        Assert.assertEquals(10, counter1.increment());
-        Assert.assertEquals(11, counter0.decrement());
+        Assert.assertEquals(11, counter1.increment());
+        Assert.assertEquals(12, counter0.decrement());
         Assert.assertEquals(0, counter12.decrement());
 
         Assert.assertEquals(0, counter3.increment());

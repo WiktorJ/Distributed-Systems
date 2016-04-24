@@ -18,7 +18,7 @@ import java.io.IOException;
 public class PFiveLocator extends EvictorBase {
 
     private static final Logger logger = Logger.getLogger(POneLocator.class);
-    private static final String repoLocation = "src/main/resources";
+    private static final String repoLocation = "src/main/resources/";
 
     private Counter servant;
     private ObjectMapper objectMapper;
