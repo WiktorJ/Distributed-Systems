@@ -1,0 +1,51 @@
+group 'Distributed-Systems-Course'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'slice'
+        }
+    }
+}
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+            url 'https://repo.zeroc.com/nexus/content/repositories/releases'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.zeroc:ice:3.6.2'
+    compile 'com.zeroc:icestorm:3.6.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
+    compile 'log4j:log4j:1.2.17'
+}
+
+
+task compileSlice(type: Exec) {
+    def sliceDir = new File("${projectDir}/slice/main/java")
+    sliceDir.mkdirs()
+
+    commandLine 'slice2java', '--output-dir', "${projectDir}/slice/main/java", "${projectDir}/src/main/slice/assignment1.ice"
+
+    standardOutput = new ByteArrayOutputStream()
+
+    ext.output = {
+        println standardOutput.toString()
+    }
+
+}
+
+gradle.projectsEvaluated {
+    compileJava.dependsOn(compileSlice)
+}
+
+String getRuntimeClasspath() {
+    sourceSets.main.runtimeClasspath.collect { it.absolutePath }.join(':')
+}

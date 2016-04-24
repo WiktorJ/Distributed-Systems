@@ -10,7 +10,7 @@ import java.util.Map;
 public final class Configuration {
 
     public static final int GENERATORS_NUMBER = 2;
-    public static final int SOLVERS_NUMBER = 2;
+    public static final int SOLVERS_NUMBER = 4;
     public static final int CLIENTS_NUMBER = 2;
     public static final String OPERATION_PROPERTY_NAME = "OPERATION_PROPERTY";
     public static final String ACTIVEMQ_ADDRESS = "tcp://localhost:61616";

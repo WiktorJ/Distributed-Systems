@@ -23,6 +23,7 @@ public class Generator implements Runnable{
 
     public Generator(Initializer initializer, String id, List<String> supportedOperations) {
         this.id = id;
+        System.out.println("Generator " + id + "  started");
         wrappers = initializer.initializeQueues(supportedOperations);
     }
 
@@ -40,11 +41,11 @@ public class Generator implements Runnable{
                 textMessage.setStringProperty(Configuration.OPERATION_PROPERTY_NAME, wrapper.getOperation());
                 return textMessage;
             });
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

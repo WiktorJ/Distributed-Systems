@@ -32,6 +32,7 @@ public class Solver implements MessageListener {
         this.wrappers = wrappers;
         ScriptEngineManager manager = new ScriptEngineManager();
         engine = manager.getEngineByName("js");
+        System.out.println("Solver " + id + "  started");
     }
 
 
