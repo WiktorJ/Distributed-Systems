@@ -1,0 +1,68 @@
+group 'Distributed-Systems-Course'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'slice'
+        }
+    }
+}
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.zeroc.com/nexus/content/repositories/releases'
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'com.zeroc:ice:3.6.2'
+    compile 'com.zeroc:icestorm:3.6.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
+    compile 'log4j:log4j:1.2.17'
+    compile 'com.h2database:h2:1.3.148'
+    compile 'com.google.guava:guava:19.0'
+}
+
+
+task compileSlice(type: Exec) {
+    def sliceDir = new File("${projectDir}/slice/main/java")
+    sliceDir.mkdirs()
+
+    commandLine 'slice2java', '--output-dir', "${projectDir}/slice/main/java", "${projectDir}/src/main/slice/assignment2.ice", "${projectDir}/src/main/slice/FinancialNews.ice"
+
+    standardOutput = new ByteArrayOutputStream()
+
+    ext.output = {
+        println standardOutput.toString()
+    }
+
+}
+
+task compilePy(type: Exec) {
+    def sliceDir = new File("${projectDir}/slice/main/java")
+    sliceDir.mkdirs()
+
+    commandLine 'slice2py', '--output-dir', "${projectDir}/slice/main/python", "${projectDir}/src/main/slice/assignment2.ice"
+
+    standardOutput = new ByteArrayOutputStream()
+
+    ext.output = {
+        println standardOutput.toString()
+    }
+
+}
+
+gradle.projectsEvaluated {
+    compileJava.dependsOn(compileSlice)
+    compileJava.dependsOn(compilePy)
+}
+
+String getRuntimeClasspath() {
+    sourceSets.main.runtimeClasspath.collect { it.absolutePath }.join(':')
+}
