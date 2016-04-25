@@ -30,11 +30,24 @@ public class Server {
             );
 
             ObjectAdapter notifierAdapter = communicator.createObjectAdapter("");
-            FinancialNewsReceiverPrx cprx = FinancialNewsReceiverPrxHelper.uncheckedCast(notifierAdapter.add(new FinancialNewsReceiver(), new Ice.Identity(java.util.UUID.randomUUID().toString(), "")));
+            FinancialNewsReceiver financialNewsReceiver = new FinancialNewsReceiver();
+            FinancialNewsReceiverPrx cprx = FinancialNewsReceiverPrxHelper.uncheckedCast(notifierAdapter.add(financialNewsReceiver, new Ice.Identity(java.util.UUID.randomUUID().toString(), "")));
             notifierAdapter.activate();
             serverProxy.ice_getConnection().setAdapter(notifierAdapter);
             serverProxy.registerForNews(cprx);
             System.out.println("Entering event processing loop...");
+
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(10000);
+                        financialNewsReceiver.ice_ping();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            });
             communicator.waitForShutdown();
         }
         catch (Exception e)
