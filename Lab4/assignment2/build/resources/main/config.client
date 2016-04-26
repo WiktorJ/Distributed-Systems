@@ -1,1 +1,0 @@
-Customer.Proxy=customer/o1:tcp -h localhost -p 10000:udp -h localhost -p 10000

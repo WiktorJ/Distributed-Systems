@@ -1,4 +1,0 @@
-Bank.Endpoints=tcp -h localhost -p 10000:udp -h localhost -p 10000
-FinancialNews=financialnews:tcp -h 149.156.97.165 -p 11113
-
-Ice.Warn.Connections=1

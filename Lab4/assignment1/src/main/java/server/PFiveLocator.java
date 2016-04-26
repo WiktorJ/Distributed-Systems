@@ -32,7 +32,14 @@ public class PFiveLocator extends EvictorBase {
     @Override
     public Object add(Current c, LocalObjectHolder cookie) {
         cookie.value = c;
-        return new Counter();
+        Counter counter;
+        try {
+            counter = objectMapper.readValue(new File(repoLocation + c.id.name), Counter.class);
+        } catch (IOException e) {
+            logger.warn("No previous state for object " + c.id.name + " new one will be created", e);
+            counter = new Counter();
+        }
+        return counter;
     }
 
     @Override
