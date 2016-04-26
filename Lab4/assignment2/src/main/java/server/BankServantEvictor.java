@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -36,6 +37,7 @@ public class BankServantEvictor extends EvictorBase {
     @Override
     public Object add(Current c, LocalObjectHolder cookie) {
         Customer customer;
+        cookie.value = c;
         try {
             customer = objectMapper.readValue(new File(repoLocation + c.id.name), Customer.class);
         } catch (IOException e) {
@@ -48,9 +50,9 @@ public class BankServantEvictor extends EvictorBase {
     @Override
     public void evict(Object servant, java.lang.Object cookie) {
         try {
-            objectMapper.writeValue(new File(repoLocation + ((Current)cookie).id.name), servant);
+            objectMapper.writeValue(new File(repoLocation + ((Current) cookie).id.name), servant);
         } catch (IOException e) {
-            logger.warn("Couldn't create backup for " + ((Current)cookie).id.name, e);
+            logger.warn("Couldn't create backup for " + ((Current) cookie).id.name, e);
         }
     }
 
@@ -59,7 +61,7 @@ public class BankServantEvictor extends EvictorBase {
         long endTime = Timestamp.valueOf("2015-12-31 00:58:00").getTime();
         long diff = endTime - beginTime + 1;
         long rand = beginTime + (long) (Math.random() * diff);
-        return new Customer(LocalDateTime.ofEpochSecond(rand, 0, ZoneOffset.UTC), new Random().nextInt(10));
+        return new Customer(LocalDateTime.ofInstant(new Date(rand).toInstant(), ZoneOffset.UTC), new Random().nextInt(10));
     }
 
 }

@@ -47,7 +47,7 @@ public class Server {
                     }
                 }
 
-            });
+            }).start();
             communicator.waitForShutdown();
         }
         catch (Exception e)

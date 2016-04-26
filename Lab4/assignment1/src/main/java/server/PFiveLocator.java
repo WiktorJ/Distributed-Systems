@@ -20,12 +20,10 @@ public class PFiveLocator extends EvictorBase {
     private static final Logger logger = Logger.getLogger(POneLocator.class);
     private static final String repoLocation = "src/main/resources/";
 
-    private Counter servant;
     private ObjectMapper objectMapper;
 
     public PFiveLocator(String id, int size) {
         super(size);
-        servant = new Counter();
         objectMapper = new ObjectMapper();
         System.out.println("## PTwoLocator(" + id + ") ##");
     }

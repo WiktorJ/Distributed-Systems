@@ -43,7 +43,7 @@ public class Customer extends _CustomerDisp {
         return String.valueOf(((periodInMonths/12 + amount/100000)/2)
                 + FinancialDataHolder.interests.get(FinancialDataHolder.financialCustomCurrency.get(currency)).getInterest()
                 + FinancialDataHolder.interests.get(FinancialDataHolder.financialCustomCurrency.get(currency)).getExchange()/4
-                + (joinDate.until(LocalDate.now(), ChronoUnit.YEARS) / 2.) + 3);
+                + (joinDate.until(LocalDateTime.now(), ChronoUnit.YEARS) / 2.) + 3);
     }
 
     @Override

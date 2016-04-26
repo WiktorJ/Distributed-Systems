@@ -1,6 +1,7 @@
 package client;
 
 import Ice.AsyncResult;
+import assignment1.Callback_Counter_increment;
 import assignment1.CounterPrx;
 import assignment1.CounterPrxHelper;
 
