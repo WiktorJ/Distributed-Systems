@@ -9,6 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Created by wiktor on 25/04/16.
@@ -48,7 +50,7 @@ public class FinancialDataHolder {
 
         public Float getExchange() {
             if (exchange == null) {
-                threadSafeGet(exchangeLock, exchangeCondition, exchange);
+                threadSafeGet(exchangeLock, exchangeCondition, () -> exchange);
             }
             return exchange;
         }
@@ -69,7 +71,7 @@ public class FinancialDataHolder {
 
         public Float getInterest() {
             if (interest == null) {
-                threadSafeGet(interestLock, interestCondition, interest);
+                threadSafeGet(interestLock, interestCondition, () -> interest);
             }
             return interest;
         }
@@ -89,10 +91,10 @@ public class FinancialDataHolder {
 
         }
 
-        private void threadSafeGet(Lock lock, Condition condition, Float toGet) {
+        private void threadSafeGet(Lock lock, Condition condition, Supplier toGet) {
             try {
                 lock.lock();
-                while (toGet == null) {
+                while (toGet.get() == null) {
                     condition.await();
                 }
             } catch (InterruptedException e) {

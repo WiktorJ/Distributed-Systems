@@ -71,21 +71,25 @@ public abstract class _CustomerDisp extends Ice.ObjectImpl implements Customer
     }
 
     public final String calcInvestmentInterest(int periodInMonths, int amount, Currency currency)
+        throws UserNotLoggedException
     {
         return calcInvestmentInterest(periodInMonths, amount, currency, null);
     }
 
     public final String calcLoadInterest(int periodInMoths, int amount, Currency currency)
+        throws UserNotLoggedException
     {
         return calcLoadInterest(periodInMoths, amount, currency, null);
     }
 
     public final Investment[] getInvestments()
+        throws UserNotLoggedException
     {
         return getInvestments(null);
     }
 
     public final Loan[] getLoans()
+        throws UserNotLoggedException
     {
         return getLoans(null);
     }
@@ -129,11 +133,19 @@ public abstract class _CustomerDisp extends Ice.ObjectImpl implements Customer
         amount = __is.readInt();
         currency = Currency.__read(__is);
         __inS.endReadParams();
-        String __ret = __obj.calcInvestmentInterest(periodInMonths, amount, currency, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeString(__ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            String __ret = __obj.calcInvestmentInterest(periodInMonths, amount, currency, __current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(__ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(UserNotLoggedException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     public static Ice.DispatchStatus ___calcLoadInterest(Customer __obj, IceInternal.Incoming __inS, Ice.Current __current)
@@ -147,33 +159,57 @@ public abstract class _CustomerDisp extends Ice.ObjectImpl implements Customer
         amount = __is.readInt();
         currency = Currency.__read(__is);
         __inS.endReadParams();
-        String __ret = __obj.calcLoadInterest(periodInMoths, amount, currency, __current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeString(__ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            String __ret = __obj.calcLoadInterest(periodInMoths, amount, currency, __current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            __os.writeString(__ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(UserNotLoggedException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     public static Ice.DispatchStatus ___getLoans(Customer __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         __inS.readEmptyParams();
-        Loan[] __ret = __obj.getLoans(__current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        loansHelper.write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            Loan[] __ret = __obj.getLoans(__current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            loansHelper.write(__os, __ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(UserNotLoggedException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     public static Ice.DispatchStatus ___getInvestments(Customer __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         __inS.readEmptyParams();
-        Investment[] __ret = __obj.getInvestments(__current);
-        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        investmentsHelper.write(__os, __ret);
-        __inS.__endWriteParams(true);
-        return Ice.DispatchStatus.DispatchOK;
+        try
+        {
+            Investment[] __ret = __obj.getInvestments(__current);
+            IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+            investmentsHelper.write(__os, __ret);
+            __inS.__endWriteParams(true);
+            return Ice.DispatchStatus.DispatchOK;
+        }
+        catch(UserNotLoggedException ex)
+        {
+            __inS.__writeUserException(ex, Ice.FormatType.DefaultFormat);
+            return Ice.DispatchStatus.DispatchUserException;
+        }
     }
 
     private final static String[] __all =

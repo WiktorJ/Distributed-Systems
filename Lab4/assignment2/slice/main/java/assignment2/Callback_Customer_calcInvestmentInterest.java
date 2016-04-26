@@ -21,7 +21,7 @@
 package assignment2;
 
 public abstract class Callback_Customer_calcInvestmentInterest
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<String>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1UE<String>
 {
     public final void __completed(Ice.AsyncResult __result)
     {

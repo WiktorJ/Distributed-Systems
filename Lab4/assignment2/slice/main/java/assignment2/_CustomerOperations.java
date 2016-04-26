@@ -26,11 +26,15 @@ public interface _CustomerOperations
 
     void logout(Ice.Current __current);
 
-    String calcInvestmentInterest(int periodInMonths, int amount, Currency currency, Ice.Current __current);
+    String calcInvestmentInterest(int periodInMonths, int amount, Currency currency, Ice.Current __current)
+        throws UserNotLoggedException;
 
-    String calcLoadInterest(int periodInMoths, int amount, Currency currency, Ice.Current __current);
+    String calcLoadInterest(int periodInMoths, int amount, Currency currency, Ice.Current __current)
+        throws UserNotLoggedException;
 
-    Loan[] getLoans(Ice.Current __current);
+    Loan[] getLoans(Ice.Current __current)
+        throws UserNotLoggedException;
 
-    Investment[] getInvestments(Ice.Current __current);
+    Investment[] getInvestments(Ice.Current __current)
+        throws UserNotLoggedException;
 }

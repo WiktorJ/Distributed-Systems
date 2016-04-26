@@ -90,9 +90,11 @@ public interface CustomerPrx extends Ice.ObjectPrx
 
     public void end_logout(Ice.AsyncResult __result);
 
-    public String calcInvestmentInterest(int periodInMonths, int amount, Currency currency);
+    public String calcInvestmentInterest(int periodInMonths, int amount, Currency currency)
+        throws UserNotLoggedException;
 
-    public String calcInvestmentInterest(int periodInMonths, int amount, Currency currency, java.util.Map<String, String> __ctx);
+    public String calcInvestmentInterest(int periodInMonths, int amount, Currency currency, java.util.Map<String, String> __ctx)
+        throws UserNotLoggedException;
 
     public Ice.AsyncResult begin_calcInvestmentInterest(int periodInMonths, int amount, Currency currency);
 
@@ -110,12 +112,14 @@ public interface CustomerPrx extends Ice.ObjectPrx
                                                         int amount, 
                                                         Currency currency, 
                                                         IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_calcInvestmentInterest(int periodInMonths, 
                                                         int amount, 
                                                         Currency currency, 
                                                         IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                         IceInternal.Functional_BoolCallback __sentCb);
 
@@ -124,6 +128,7 @@ public interface CustomerPrx extends Ice.ObjectPrx
                                                         Currency currency, 
                                                         java.util.Map<String, String> __ctx, 
                                                         IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_calcInvestmentInterest(int periodInMonths, 
@@ -131,14 +136,18 @@ public interface CustomerPrx extends Ice.ObjectPrx
                                                         Currency currency, 
                                                         java.util.Map<String, String> __ctx, 
                                                         IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                        IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                         IceInternal.Functional_BoolCallback __sentCb);
 
-    public String end_calcInvestmentInterest(Ice.AsyncResult __result);
+    public String end_calcInvestmentInterest(Ice.AsyncResult __result)
+        throws UserNotLoggedException;
 
-    public String calcLoadInterest(int periodInMoths, int amount, Currency currency);
+    public String calcLoadInterest(int periodInMoths, int amount, Currency currency)
+        throws UserNotLoggedException;
 
-    public String calcLoadInterest(int periodInMoths, int amount, Currency currency, java.util.Map<String, String> __ctx);
+    public String calcLoadInterest(int periodInMoths, int amount, Currency currency, java.util.Map<String, String> __ctx)
+        throws UserNotLoggedException;
 
     public Ice.AsyncResult begin_calcLoadInterest(int periodInMoths, int amount, Currency currency);
 
@@ -156,12 +165,14 @@ public interface CustomerPrx extends Ice.ObjectPrx
                                                   int amount, 
                                                   Currency currency, 
                                                   IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                  IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                   IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_calcLoadInterest(int periodInMoths, 
                                                   int amount, 
                                                   Currency currency, 
                                                   IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                  IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                   IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                   IceInternal.Functional_BoolCallback __sentCb);
 
@@ -170,6 +181,7 @@ public interface CustomerPrx extends Ice.ObjectPrx
                                                   Currency currency, 
                                                   java.util.Map<String, String> __ctx, 
                                                   IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                  IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                   IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_calcLoadInterest(int periodInMoths, 
@@ -177,14 +189,18 @@ public interface CustomerPrx extends Ice.ObjectPrx
                                                   Currency currency, 
                                                   java.util.Map<String, String> __ctx, 
                                                   IceInternal.Functional_GenericCallback1<String> __responseCb, 
+                                                  IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                   IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                   IceInternal.Functional_BoolCallback __sentCb);
 
-    public String end_calcLoadInterest(Ice.AsyncResult __result);
+    public String end_calcLoadInterest(Ice.AsyncResult __result)
+        throws UserNotLoggedException;
 
-    public Loan[] getLoans();
+    public Loan[] getLoans()
+        throws UserNotLoggedException;
 
-    public Loan[] getLoans(java.util.Map<String, String> __ctx);
+    public Loan[] getLoans(java.util.Map<String, String> __ctx)
+        throws UserNotLoggedException;
 
     public Ice.AsyncResult begin_getLoans();
 
@@ -199,26 +215,33 @@ public interface CustomerPrx extends Ice.ObjectPrx
     public Ice.AsyncResult begin_getLoans(java.util.Map<String, String> __ctx, Callback_Customer_getLoans __cb);
 
     public Ice.AsyncResult begin_getLoans(IceInternal.Functional_GenericCallback1<Loan[]> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_getLoans(IceInternal.Functional_GenericCallback1<Loan[]> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_getLoans(java.util.Map<String, String> __ctx, 
                                           IceInternal.Functional_GenericCallback1<Loan[]> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_getLoans(java.util.Map<String, String> __ctx, 
                                           IceInternal.Functional_GenericCallback1<Loan[]> __responseCb, 
+                                          IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                           IceInternal.Functional_BoolCallback __sentCb);
 
-    public Loan[] end_getLoans(Ice.AsyncResult __result);
+    public Loan[] end_getLoans(Ice.AsyncResult __result)
+        throws UserNotLoggedException;
 
-    public Investment[] getInvestments();
+    public Investment[] getInvestments()
+        throws UserNotLoggedException;
 
-    public Investment[] getInvestments(java.util.Map<String, String> __ctx);
+    public Investment[] getInvestments(java.util.Map<String, String> __ctx)
+        throws UserNotLoggedException;
 
     public Ice.AsyncResult begin_getInvestments();
 
@@ -233,20 +256,25 @@ public interface CustomerPrx extends Ice.ObjectPrx
     public Ice.AsyncResult begin_getInvestments(java.util.Map<String, String> __ctx, Callback_Customer_getInvestments __cb);
 
     public Ice.AsyncResult begin_getInvestments(IceInternal.Functional_GenericCallback1<Investment[]> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_getInvestments(IceInternal.Functional_GenericCallback1<Investment[]> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                 IceInternal.Functional_BoolCallback __sentCb);
 
     public Ice.AsyncResult begin_getInvestments(java.util.Map<String, String> __ctx, 
                                                 IceInternal.Functional_GenericCallback1<Investment[]> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
 
     public Ice.AsyncResult begin_getInvestments(java.util.Map<String, String> __ctx, 
                                                 IceInternal.Functional_GenericCallback1<Investment[]> __responseCb, 
+                                                IceInternal.Functional_GenericCallback1<Ice.UserException> __userExceptionCb, 
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                 IceInternal.Functional_BoolCallback __sentCb);
 
-    public Investment[] end_getInvestments(Ice.AsyncResult __result);
+    public Investment[] end_getInvestments(Ice.AsyncResult __result)
+        throws UserNotLoggedException;
 }

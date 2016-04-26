@@ -6,6 +6,8 @@ module assignment2 {
 
     enum Currency {EUR, USD, CHF};
 
+    exception UserNotLoggedException{};
+
     struct Loan {
         string interest;
         string paid;
@@ -26,10 +28,10 @@ module assignment2 {
     interface Customer {
         void login();
         void logout();
-        string calcInvestmentInterest(int periodInMonths, int amount, Currency currency);
-        string calcLoadInterest(int periodInMoths, int amount, Currency currency);
-        loans getLoans();
-        investments getInvestments();
+        string calcInvestmentInterest(int periodInMonths, int amount, Currency currency) throws UserNotLoggedException;
+        string calcLoadInterest(int periodInMoths, int amount, Currency currency) throws UserNotLoggedException;
+        loans getLoans() throws UserNotLoggedException;
+        investments getInvestments() throws UserNotLoggedException;
     };
 
 };

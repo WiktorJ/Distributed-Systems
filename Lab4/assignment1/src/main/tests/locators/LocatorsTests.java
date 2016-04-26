@@ -46,8 +46,8 @@ public class LocatorsTests {
         for (int i = 0; i < 10; i++) {
             counter0.increment();
         }
-        Assert.assertEquals(11, counter1.increment());
-        Assert.assertEquals(12, counter0.decrement());
+        Assert.assertEquals(10, counter1.increment());
+        Assert.assertEquals(11, counter0.decrement());
         Assert.assertEquals(0, counter12.decrement());
 
         Assert.assertEquals(0, counter3.increment());

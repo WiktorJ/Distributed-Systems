@@ -1,10 +1,7 @@
 package impl;
 
 import Ice.Current;
-import assignment2.Currency;
-import assignment2.Investment;
-import assignment2.Loan;
-import assignment2._CustomerDisp;
+import assignment2.*;
 import server.FinancialDataHolder;
 
 import java.time.LocalDate;
@@ -39,7 +36,10 @@ public class Customer extends _CustomerDisp {
     }
 
     @Override
-    public String calcInvestmentInterest(int periodInMonths, int amount, Currency currency, Current __current) {
+    public String calcInvestmentInterest(int periodInMonths, int amount, Currency currency, Current __current) throws UserNotLoggedException {
+        if (!loggedIn) {
+            throw new UserNotLoggedException();
+        }
         return String.valueOf(((periodInMonths/12 + amount/100000)/2)
                 + FinancialDataHolder.interests.get(FinancialDataHolder.financialCustomCurrency.get(currency)).getInterest()
                 + FinancialDataHolder.interests.get(FinancialDataHolder.financialCustomCurrency.get(currency)).getExchange()/4
@@ -47,7 +47,10 @@ public class Customer extends _CustomerDisp {
     }
 
     @Override
-    public String calcLoadInterest(int periodInMoths, int amount, Currency currency, Current __current) {
+    public String calcLoadInterest(int periodInMoths, int amount, Currency currency, Current __current) throws UserNotLoggedException {
+        if (!loggedIn) {
+            throw new UserNotLoggedException();
+        }
         return String.valueOf(periodInMoths/12 - amount/100000.
                 + FinancialDataHolder.interests.get(FinancialDataHolder.financialCustomCurrency.get(currency)).getInterest()
                 + FinancialDataHolder.interests.get(FinancialDataHolder.financialCustomCurrency.get(currency)).getExchange()/4
@@ -56,12 +59,18 @@ public class Customer extends _CustomerDisp {
 
 
     @Override
-    public Loan[] getLoans(Current __current) {
+    public Loan[] getLoans(Current __current) throws UserNotLoggedException {
+        if (!loggedIn) {
+            throw new UserNotLoggedException();
+        }
         return new Loan[0];
     }
 
     @Override
-    public Investment[] getInvestments(Current __current) {
+    public Investment[] getInvestments(Current __current) throws UserNotLoggedException {
+        if (!loggedIn) {
+            throw new UserNotLoggedException();
+        }
         return new Investment[0];
     }
 

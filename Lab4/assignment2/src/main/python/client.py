@@ -21,7 +21,9 @@ try:
             months = int(input("moths: "))
             amount = int(input("amount: "))
             currency = ass.Currency.valueOf(int(input("currency(0 - EUR, 1 - USD, 2 - CHF):")))
-            customer.begin_calcLoadInterest(20, 1000, ass.Currency.EUR, lambda interest: print(interest), lambda ex: print("error"))
+            customer.begin_calcLoadInterest(20, 1000, currency,
+                                            lambda interest: print("load interest: " + interest),
+                                            lambda ex: print("error: " + str(ex)))
         if inp == "inv":
             months = int(input("moths: "))
             amount = int(input("amount: "))

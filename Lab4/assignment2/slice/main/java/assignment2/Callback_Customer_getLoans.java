@@ -21,7 +21,7 @@
 package assignment2;
 
 public abstract class Callback_Customer_getLoans
-    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1<assignment2.Loan[]>
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackArg1UE<assignment2.Loan[]>
 {
     public final void __completed(Ice.AsyncResult __result)
     {

@@ -26,11 +26,15 @@ public interface _CustomerOperationsNC
 
     void logout();
 
-    String calcInvestmentInterest(int periodInMonths, int amount, Currency currency);
+    String calcInvestmentInterest(int periodInMonths, int amount, Currency currency)
+        throws UserNotLoggedException;
 
-    String calcLoadInterest(int periodInMoths, int amount, Currency currency);
+    String calcLoadInterest(int periodInMoths, int amount, Currency currency)
+        throws UserNotLoggedException;
 
-    Loan[] getLoans();
+    Loan[] getLoans()
+        throws UserNotLoggedException;
 
-    Investment[] getInvestments();
+    Investment[] getInvestments()
+        throws UserNotLoggedException;
 }

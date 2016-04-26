@@ -47,6 +47,25 @@ if 'Currency' not in _M_assignment2.__dict__:
     _M_assignment2.Currency = Currency
     del Currency
 
+if 'UserNotLoggedException' not in _M_assignment2.__dict__:
+    _M_assignment2.UserNotLoggedException = Ice.createTempClass()
+    class UserNotLoggedException(Ice.UserException):
+        def __init__(self):
+            pass
+
+        def __str__(self):
+            return IcePy.stringifyException(self)
+
+        __repr__ = __str__
+
+        _ice_name = 'assignment2::UserNotLoggedException'
+
+    _M_assignment2._t_UserNotLoggedException = IcePy.defineException('::assignment2::UserNotLoggedException', UserNotLoggedException, (), False, None, ())
+    UserNotLoggedException._ice_type = _M_assignment2._t_UserNotLoggedException
+
+    _M_assignment2.UserNotLoggedException = UserNotLoggedException
+    del UserNotLoggedException
+
 if 'Loan' not in _M_assignment2.__dict__:
     _M_assignment2.Loan = Ice.createTempClass()
     class Loan(object):
@@ -397,10 +416,10 @@ if 'Customer' not in _M_assignment2.__dict__:
 
     Customer._op_login = IcePy.Operation('login', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), None, ())
     Customer._op_logout = IcePy.Operation('logout', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), None, ())
-    Customer._op_calcInvestmentInterest = IcePy.Operation('calcInvestmentInterest', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0), ((), IcePy._t_int, False, 0), ((), _M_assignment2._t_Currency, False, 0)), (), ((), IcePy._t_string, False, 0), ())
-    Customer._op_calcLoadInterest = IcePy.Operation('calcLoadInterest', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0), ((), IcePy._t_int, False, 0), ((), _M_assignment2._t_Currency, False, 0)), (), ((), IcePy._t_string, False, 0), ())
-    Customer._op_getLoans = IcePy.Operation('getLoans', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_assignment2._t_loans, False, 0), ())
-    Customer._op_getInvestments = IcePy.Operation('getInvestments', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_assignment2._t_investments, False, 0), ())
+    Customer._op_calcInvestmentInterest = IcePy.Operation('calcInvestmentInterest', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0), ((), IcePy._t_int, False, 0), ((), _M_assignment2._t_Currency, False, 0)), (), ((), IcePy._t_string, False, 0), (_M_assignment2._t_UserNotLoggedException,))
+    Customer._op_calcLoadInterest = IcePy.Operation('calcLoadInterest', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0), ((), IcePy._t_int, False, 0), ((), _M_assignment2._t_Currency, False, 0)), (), ((), IcePy._t_string, False, 0), (_M_assignment2._t_UserNotLoggedException,))
+    Customer._op_getLoans = IcePy.Operation('getLoans', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_assignment2._t_loans, False, 0), (_M_assignment2._t_UserNotLoggedException,))
+    Customer._op_getInvestments = IcePy.Operation('getInvestments', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_assignment2._t_investments, False, 0), (_M_assignment2._t_UserNotLoggedException,))
 
     _M_assignment2.Customer = Customer
     del Customer
