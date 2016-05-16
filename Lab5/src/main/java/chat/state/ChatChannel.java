@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,7 @@ class ChatChannel {
 
     ChatChannel(String channelName) {
         this.channelName = channelName;
+        this.usersNames = new ArrayList<>();
     }
 
     void connect(String nickname, String address, Receiver receiver) throws Exception {

@@ -101,7 +101,7 @@ public class LocalState {
     }
 
     public synchronized void sendMessage(String channelName, String message) throws Exception {
-        chatChannels.get(channelName).sendMessage(message);
+       chatChannels.get(channelName).sendMessage(message);
     }
 
     public synchronized void updateActiveUsers(List<String> newUsers) {
