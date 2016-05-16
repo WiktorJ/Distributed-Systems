@@ -44,6 +44,7 @@ class ChatChannel {
     void disconnect(){
         if(channel != null) {
             channel.close();
+            channel = null;
         } else {
             logger.warn("User is not connected to channel: {}", channelName);
         }
