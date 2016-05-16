@@ -20,8 +20,7 @@ public class ChatReceiver extends ReceiverAdapter {
     public void receive(Message msg) {
         String sender = msg.getSrc().toString();
         if (!sender.equals(nickname)) {
-            System.out.println("Channel: " + channelName + "||From: " + sender);
-            System.out.println(msg.getObject());
+            System.out.println("[Channel: (" + channelName + ") From: (" + sender + ")]: " + msg.getObject());
         }
     }
 }

@@ -29,11 +29,19 @@ import java.net.UnknownHostException;
  */
 public class ChatUtils {
 
+    public static JChannel createChannel() throws Exception {
+        return createChannel(null);
+    }
+
     public static JChannel createChannel(String multicastAddress) throws Exception {
         JChannel channel = new JChannel(false);
         ProtocolStack stack = new ProtocolStack();
         channel.setProtocolStack(stack);
-        stack.addProtocol(new UDP().setValue("mcast_group_addr", InetAddress.getByName(multicastAddress)))
+        UDP upd = new UDP();
+        if(multicastAddress != null) {
+            upd.setValue("mcast_group_addr", InetAddress.getByName(multicastAddress));
+        }
+        stack.addProtocol(upd)
                 .addProtocol(new PING())
                 .addProtocol(new MERGE2())
                 .addProtocol(new FD_SOCK())

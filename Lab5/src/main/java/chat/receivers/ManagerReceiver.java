@@ -43,12 +43,14 @@ public class ManagerReceiver extends ReceiverAdapter {
 
     @Override
     public void getState(OutputStream output) throws Exception {
+        System.out.println("GET state in user: " + localState.getNickname());
         Util.objectToStream(localState.getStateToSend(), new DataOutputStream(output));
 
     }
 
     @Override
     public void setState(InputStream input) throws Exception {
+        System.out.println("SET state in user: " + localState.getNickname());
         localState.setNewState((ChatOperationProtos.ChatState) Util.objectFromStream(new DataInputStream(input)));
     }
 }

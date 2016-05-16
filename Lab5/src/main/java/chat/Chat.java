@@ -25,12 +25,13 @@ public class Chat {
 
     public Chat(String nickname) throws Exception {
         this.nickname = nickname;
-        JChannel channel = ChatUtils.createChannel(MANAGEMENT_ADDRESS);
+        JChannel channel = ChatUtils.createChannel();
         this.localState = new LocalState(channel, nickname);
         channel.setName(nickname);
         channel.setReceiver(new ManagerReceiver(this.localState));
         channel.connect(MANAGEMENT_CHANNEL_NAME);
-        channel.getState(null, 10000);
+        channel.getState(null, 0);
+        localState.setInitialized();
     }
 
     public void sendMessage(String channel, String message) {

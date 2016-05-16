@@ -101,7 +101,7 @@ public class LocalState {
     }
 
     public synchronized void sendMessage(String channelName, String message) throws Exception {
-       chatChannels.get(channelName).sendMessage(message);
+        chatChannels.get(channelName).sendMessage(message);
     }
 
     public synchronized void updateActiveUsers(List<String> newUsers) {
@@ -133,7 +133,16 @@ public class LocalState {
         }
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setInitialized() {
+        initialized = true;
+    }
+
     private synchronized void sendManagementMessage(String channelName, ChatOperationProtos.ChatAction.ActionType type) throws Exception {
         managementChannel.send(ChatUtils.createActionMessage(nickname, channelName, type));
     }
+
 }
