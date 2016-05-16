@@ -50,6 +50,10 @@ class ChatChannel {
     }
 
     void sendMessage(String message) throws Exception {
+        if (channel == null) {
+            logger.warn("You are not connected to channel: " + channelName);
+            return;
+        }
         channel.send(new Message(null, message));
     }
 

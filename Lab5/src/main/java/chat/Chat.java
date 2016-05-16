@@ -25,7 +25,7 @@ public class Chat {
 
     public Chat(String nickname) throws Exception {
         this.nickname = nickname;
-        JChannel channel = ChatUtils.createChannel();
+        JChannel channel = ChatUtils.createChannel(MANAGEMENT_ADDRESS);
         this.localState = new LocalState(channel, nickname);
         channel.setName(nickname);
         channel.setReceiver(new ManagerReceiver(this.localState));
