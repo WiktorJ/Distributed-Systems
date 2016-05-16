@@ -1,0 +1,24 @@
+group 'Distributed-Systems-Course'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    // http://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '2.4.1'
+
+    // http://mvnrepository.com/artifact/org.jgroups/jgroups
+    compile group: 'org.jgroups', name: 'jgroups', version: '3.0.10.Final'
+
+    // http://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+
+}

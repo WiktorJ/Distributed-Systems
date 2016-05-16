@@ -71,7 +71,7 @@ public class LocatorsTests {
         Assert.assertEquals(4, counter6.decrement());
         Assert.assertEquals(3, counter7.increment());
 
-
+        //for n = 2
         Assert.assertEquals(0, counter8.increment());
         Assert.assertEquals(1, counter8.increment());
         Assert.assertEquals(0, counter9.increment());
@@ -80,6 +80,7 @@ public class LocatorsTests {
         Assert.assertEquals(1, counter10.increment());
         Assert.assertEquals(2, counter11.decrement());
         Assert.assertEquals(1, counter10.increment());
+        Assert.assertEquals(2, counter8.increment());
 
     }
 
