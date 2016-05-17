@@ -63,13 +63,10 @@ public class LocalState {
         initialized = true;
         Map<String, ChatChannel> stateMap = new HashMap<>();
         chatState.getStateList().stream().forEach(e -> {
-            if (!stateMap.containsKey(e)) {
-                ChatChannel chatChannel = new ChatChannel(e.getChannel());
-                chatChannel.addUser(e.getNickname());
-                stateMap.put(e.getChannel(), chatChannel);
-            } else {
-                stateMap.get(e).addUser(e.getNickname());
+            if (!stateMap.containsKey(e.getChannel())) {
+                stateMap.put(e.getChannel(), new ChatChannel(e.getChannel()));
             }
+            stateMap.get(e.getChannel()).addUser(e.getNickname());
             chatUsers.add(e.getNickname());
         });
         this.chatChannels = stateMap;
@@ -78,6 +75,7 @@ public class LocalState {
     public synchronized void leaveChannel(String channelName) throws Exception {
         clientChannels.remove(channelName);
         chatChannels.get(channelName).disconnect();
+        deleteUserFromChannel(nickname, channelName);
         sendManagementMessage(channelName, ChatOperationProtos.ChatAction.ActionType.LEAVE);
     }
 
