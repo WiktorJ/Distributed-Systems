@@ -28,10 +28,12 @@ public class ManagerReceiver extends ReceiverAdapter {
     public void receive(Message msg) {
         System.out.println("Received Message: " + msg.toString());
         ChatOperationProtos.ChatAction action = (ChatOperationProtos.ChatAction) msg.getObject();
-        if (action.getAction() == ChatOperationProtos.ChatAction.ActionType.JOIN) {
-            localState.addNewUserToChannel(action.getNickname(), action.getChannel());
-        } else if (action.getAction() == ChatOperationProtos.ChatAction.ActionType.LEAVE) {
-            localState.deleteUserFromChannel(action.getNickname(), action.getChannel());
+        if (!action.getNickname().equals(localState.getNickname())) {
+            if (action.getAction() == ChatOperationProtos.ChatAction.ActionType.JOIN) {
+                localState.addNewUserToChannel(action.getNickname(), action.getChannel());
+            } else if (action.getAction() == ChatOperationProtos.ChatAction.ActionType.LEAVE) {
+                localState.deleteUserFromChannel(action.getNickname(), action.getChannel());
+            }
         }
     }
 

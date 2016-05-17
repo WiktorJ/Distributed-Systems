@@ -29,7 +29,7 @@ public class Client {
                     chat.sendMessage(split[1], split[2]);
                     break;
                 case "list":
-                    chat.getChannelsList().stream().forEach(System.out::println);
+                    chat.getChannelsList();
             }
         }
         chat.leaveChat();

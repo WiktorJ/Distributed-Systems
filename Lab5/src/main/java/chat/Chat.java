@@ -41,8 +41,8 @@ public class Chat {
             logger.warn("Unable to send message to channel: {}", channel ,e);
         }
     }
-    public Set<String> getChannelsList(){
-        return localState.getChannelList();
+    public void getChannelsList(){
+        localState.getChannelList();
     }
     public void joinChannel(String channel){
         try {

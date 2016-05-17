@@ -62,8 +62,8 @@ public class LocalState {
         }
         initialized = true;
         Map<String, ChatChannel> stateMap = new HashMap<>();
-        chatState.getStateList().stream().forEach(e ->  {
-            if(!stateMap.containsKey(e)) {
+        chatState.getStateList().stream().forEach(e -> {
+            if (!stateMap.containsKey(e)) {
                 ChatChannel chatChannel = new ChatChannel(e.getChannel());
                 chatChannel.addUser(e.getNickname());
                 stateMap.put(e.getChannel(), chatChannel);
@@ -82,9 +82,7 @@ public class LocalState {
     }
 
     public synchronized void joinChannel(String channelName) throws Exception {
-        if (!chatChannels.containsKey(channelName)) {
-            addNewUserToChannel(nickname, channelName);
-        }
+        addNewUserToChannel(nickname, channelName);
         chatChannels.get(channelName).connect(nickname, ADDRESS_PREFIX + channelName, new ChatReceiver(channelName, nickname));
         sendManagementMessage(channelName, ChatOperationProtos.ChatAction.ActionType.JOIN);
         clientChannels.add(channelName);
@@ -94,10 +92,14 @@ public class LocalState {
         for (String s : new ArrayList<>(clientChannels)) {
             leaveChannel(s);
         }
+        managementChannel.close();
     }
 
-    public synchronized Set<String> getChannelList() {
-        return chatChannels.keySet();
+    public synchronized void getChannelList() {
+        chatChannels.values().stream().forEach(e -> {
+            System.out.print("\nChannel: " + e.getChannelName() + " Users: ");
+            e.getUsersNames().stream().forEach(ee -> System.out.print(ee + ", "));
+        });
     }
 
     public synchronized void sendMessage(String channelName, String message) throws Exception {
@@ -108,7 +110,7 @@ public class LocalState {
         this.chatUsers.clear();
         this.chatUsers.addAll(newUsers);
         List<String> inactiveChannels = new ArrayList<>();
-        chatChannels.values().stream().forEach( e -> {
+        chatChannels.values().stream().forEach(e -> {
             e.getUsersNames().retainAll(newUsers);
             if (e.getUsersNames().isEmpty()) {
                 inactiveChannels.add(e.getChannelName());
@@ -120,7 +122,7 @@ public class LocalState {
 
 
     public synchronized void addNewUserToChannel(String nickname, String channel) {
-        if(!chatChannels.containsKey(channel)) {
+        if (!chatChannels.containsKey(channel)) {
             chatChannels.put(channel, new ChatChannel(channel));
         }
         chatChannels.get(channel).addUser(nickname);
